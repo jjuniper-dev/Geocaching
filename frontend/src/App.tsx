@@ -1,12 +1,42 @@
 import { useState } from 'react'
 import Map from './components/Map'
 import POIPanel from './components/POIPanel'
+import RoutePanel from './components/RoutePanel'
 import type { POI } from './types/geospatial'
 import pois from './data/pois'
 import './App.css'
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
 export default function App() {
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
+  const [mode, setMode] = useState<'explore' | 'route'>('explore')
+  const [route, setRoute] = useState<[number, number][] | null>(null)
+  const [narrative, setNarrative] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  const handleGenerateRoute = async (
+    start: [number, number],
+    end: [number, number]
+  ) => {
+    setLoading(true)
+    try {
+      const response = await fetch(`${API_BASE}/api/routes/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ start, end }),
+      })
+      if (!response.ok) throw new Error('Failed to generate route')
+      const data = await response.json()
+      setRoute(data.coordinates)
+      setNarrative(data.narrative)
+    } catch (err) {
+      console.error('Route generation failed:', err)
+      alert('Failed to generate route. Make sure the backend is running.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="app">
@@ -16,17 +46,49 @@ export default function App() {
           <span className="header__title">Snuggly Anchor</span>
           <span className="header__sub">Chelsea · Gatineau Park</span>
         </div>
-        <div className="header__count">{pois.length} locations</div>
+        <div className="header__controls">
+          <button
+            className={`header__mode ${mode === 'explore' ? 'active' : ''}`}
+            onClick={() => {
+              setMode('explore')
+              setRoute(null)
+              setNarrative(null)
+            }}
+          >
+            Explore
+          </button>
+          <button
+            className={`header__mode ${mode === 'route' ? 'active' : ''}`}
+            onClick={() => setMode('route')}
+          >
+            Route
+          </button>
+          <span className="header__count">{pois.length} locations</span>
+        </div>
       </header>
       <div className="main">
         <aside className="sidebar">
-          <POIPanel poi={selectedPOI} />
+          {mode === 'explore' ? (
+            <POIPanel poi={selectedPOI} />
+          ) : (
+            <RoutePanel
+              onGenerate={handleGenerateRoute}
+              loading={loading}
+              narrative={narrative}
+              onClose={() => {
+                setMode('explore')
+                setRoute(null)
+                setNarrative(null)
+              }}
+            />
+          )}
         </aside>
         <div className="map-wrapper">
           <Map
             pois={pois}
             selectedPOI={selectedPOI}
             onSelectPOI={setSelectedPOI}
+            route={route}
           />
         </div>
       </div>

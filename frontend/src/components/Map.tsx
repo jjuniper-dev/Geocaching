@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Polyline, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import type { POI, POIType } from '../types/geospatial'
 import { POI_TYPE_COLORS } from '../types/geospatial'
@@ -33,9 +33,10 @@ interface MapProps {
   pois: POI[]
   selectedPOI: POI | null
   onSelectPOI: (poi: POI) => void
+  route?: [number, number][] | null
 }
 
-export default function Map({ pois, selectedPOI, onSelectPOI }: MapProps) {
+export default function Map({ pois, selectedPOI, onSelectPOI, route }: MapProps) {
   return (
     <MapContainer
       center={CHELSEA_CENTER}
@@ -56,6 +57,15 @@ export default function Map({ pois, selectedPOI, onSelectPOI }: MapProps) {
           eventHandlers={{ click: () => onSelectPOI(poi) }}
         />
       ))}
+      {route && (
+        <Polyline
+          positions={route}
+          color="#2563eb"
+          weight={3}
+          opacity={0.8}
+          dashArray="5,5"
+        />
+      )}
       <FlyToSelected poi={selectedPOI} />
     </MapContainer>
   )
