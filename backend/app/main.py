@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from strawberry.asgi import GraphQL
 from app.routes import routing
+from app.routes.graph import schema
 
-app = FastAPI(title="Snuggly Anchor API", version="0.1.0")
+app = FastAPI(title="Cartograph API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -13,6 +15,7 @@ app.add_middleware(
 )
 
 app.include_router(routing.router)
+app.add_route("/graphql", GraphQL(schema))
 
 @app.get("/health")
 def health():
