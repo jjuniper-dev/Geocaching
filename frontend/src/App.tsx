@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Map from './components/Map'
 import POIPanel from './components/POIPanel'
 import RoutePanel from './components/RoutePanel'
+import GraphView from './components/GraphView'
 import type { POI } from './types/geospatial'
 import pois from './data/pois'
 import './App.css'
@@ -10,10 +11,32 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function App() {
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
-  const [mode, setMode] = useState<'explore' | 'route'>('explore')
+  const [mode, setMode] = useState<'explore' | 'route' | 'graph'>('explore')
   const [route, setRoute] = useState<[number, number][] | null>(null)
   const [narrative, setNarrative] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [visitedPois, setVisitedPois] = useState<Set<string>>(new Set())
+
+  useEffect(() => {
+    const saved = localStorage.getItem('visitedPois')
+    if (saved) {
+      setVisitedPois(new Set(JSON.parse(saved)))
+    }
+  }, [])
+
+  const markPOIAsVisited = (poiId: string) => {
+    setVisitedPois((prev) => {
+      const updated = new Set(prev)
+      updated.add(poiId)
+      localStorage.setItem('visitedPois', JSON.stringify([...updated]))
+      return updated
+    })
+  }
+
+  const handleSelectPOI = (poi: POI) => {
+    setSelectedPOI(poi)
+    markPOIAsVisited(poi.id)
+  }
 
   const handleGenerateRoute = async (
     start: [number, number],
@@ -63,35 +86,45 @@ export default function App() {
           >
             Route
           </button>
+          <button
+            className={`header__mode ${mode === 'graph' ? 'active' : ''}`}
+            onClick={() => setMode('graph')}
+          >
+            Graph
+          </button>
           <span className="header__count">{pois.length} locations</span>
         </div>
       </header>
-      <div className="main">
-        <aside className="sidebar">
-          {mode === 'explore' ? (
-            <POIPanel poi={selectedPOI} />
-          ) : (
-            <RoutePanel
-              onGenerate={handleGenerateRoute}
-              loading={loading}
-              narrative={narrative}
-              onClose={() => {
-                setMode('explore')
-                setRoute(null)
-                setNarrative(null)
-              }}
+      {mode === 'graph' ? (
+        <GraphView pois={pois} visitedPois={visitedPois} onSelectPOI={handleSelectPOI} />
+      ) : (
+        <div className="main">
+          <aside className="sidebar">
+            {mode === 'explore' ? (
+              <POIPanel poi={selectedPOI} />
+            ) : (
+              <RoutePanel
+                onGenerate={handleGenerateRoute}
+                loading={loading}
+                narrative={narrative}
+                onClose={() => {
+                  setMode('explore')
+                  setRoute(null)
+                  setNarrative(null)
+                }}
+              />
+            )}
+          </aside>
+          <div className="map-wrapper">
+            <Map
+              pois={pois}
+              selectedPOI={selectedPOI}
+              onSelectPOI={handleSelectPOI}
+              route={route}
             />
-          )}
-        </aside>
-        <div className="map-wrapper">
-          <Map
-            pois={pois}
-            selectedPOI={selectedPOI}
-            onSelectPOI={setSelectedPOI}
-            route={route}
-          />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

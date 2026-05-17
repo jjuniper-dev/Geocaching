@@ -362,3 +362,87 @@ html, body, #root { height: 100%; }
   line-height: 1.7;
   color: #455a64;
 }
+
+/* Graph View */
+.graph-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: white;
+  position: relative;
+}
+
+.graph-view__header {
+  flex-shrink: 0;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.graph-view__header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+
+.graph-view__hint {
+  font-size: 12px;
+  color: #78909c;
+  margin: 0;
+}
+
+.graph-view__svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: white;
+  cursor: grab;
+}
+
+.graph-view__svg:active {
+  cursor: grabbing;
+}
+
+.graph-view__legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #546e7a;
+  margin-bottom: 6px;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.visited {
+  background: #4fc3f7;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #4fc3f7;
+}
+
+.legend-dot.unvisited {
+  background: #bdbdbd;
+}
