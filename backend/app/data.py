@@ -1,4 +1,12 @@
 from dataclasses import dataclass
+from typing import Optional, Literal
+
+@dataclass
+class TrailCapabilities:
+    dogFriendly: bool
+    eBikeFriendly: bool
+    difficulty: Literal["easy", "moderate", "hard"]
+    lengthKm: Optional[float] = None
 
 @dataclass
 class POI:
@@ -11,6 +19,8 @@ class POI:
     conservation: str = ""
     season: str = ""
     source: str = ""
+    trail_capabilities: Optional[TrailCapabilities] = None
+    conservation_sensitivity: Optional[Literal["low", "medium", "high"]] = None
 
 POIS = [
     POI(
@@ -20,7 +30,8 @@ POIS = [
         lat=45.4564, lng=-75.7925,
         description="A meromictic lake — its layers never mix, preserving ancient sediment records dating back 11,000 years.",
         conservation="Fencing protects the shoreline. Stay on the boardwalk.",
-        source="Parks Canada"
+        source="Parks Canada",
+        conservation_sensitivity="high"
     ),
     POI(
         id="champlain-lookout",
@@ -28,7 +39,9 @@ POIS = [
         poi_type="scenic",
         lat=45.4887, lng=-75.9221,
         description="The most panoramic viewpoint in Gatineau Park. On clear days you can see the Ottawa River valley.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=False, difficulty="easy", lengthKm=2.5),
+        conservation_sensitivity="low"
     ),
     POI(
         id="lusk-cave",
@@ -38,7 +51,9 @@ POIS = [
         description="A 100-metre marble cave accessible via an 11 km round-trip trail. Wading through an underground stream.",
         conservation="Do not disturb hibernating bats (November–April).",
         season="Best: May–October. Trail closed during winter.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=False, eBikeFriendly=False, difficulty="moderate", lengthKm=11),
+        conservation_sensitivity="high"
     ),
     POI(
         id="mackenzie-king-estate",
@@ -47,7 +62,8 @@ POIS = [
         lat=45.4741, lng=-75.8512,
         description="Canada's longest-serving PM's retreat from 1903 until his death in 1950.",
         season="Open May–October.",
-        source="NCC"
+        source="NCC",
+        conservation_sensitivity="low"
     ),
     POI(
         id="carbide-willson-ruins",
@@ -56,7 +72,8 @@ POIS = [
         lat=45.4582, lng=-75.7965,
         description="Stone ruins of a 1900s calcium carbide laboratory on Meech Creek.",
         conservation="Ruins are structurally fragile. Do not climb on the walls.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        conservation_sensitivity="medium"
     ),
     POI(
         id="meech-lake",
@@ -65,7 +82,9 @@ POIS = [
         lat=45.4989, lng=-75.8699,
         description="A pristine lake with a public beach, canoe rentals, and calm water ideal for swimming.",
         season="Swimming season: June–August.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=True, difficulty="easy", lengthKm=3),
+        conservation_sensitivity="low"
     ),
     POI(
         id="skyline-trail",
@@ -73,7 +92,9 @@ POIS = [
         poi_type="trail",
         lat=45.4962, lng=-75.8920,
         description="A moderately challenging ridge trail offering continuous views westward across the Gatineau Hills.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=False, eBikeFriendly=False, difficulty="moderate", lengthKm=7.5),
+        conservation_sensitivity="medium"
     ),
     POI(
         id="king-mountain",
@@ -81,7 +102,9 @@ POIS = [
         poi_type="scenic",
         lat=45.4695, lng=-75.8099,
         description="A rocky summit accessible via a short but steep trail, offering close-up views of the Ottawa Valley farmland.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=False, difficulty="moderate", lengthKm=2),
+        conservation_sensitivity="low"
     ),
     POI(
         id="etienne-brule-lookout",
@@ -89,7 +112,9 @@ POIS = [
         poi_type="scenic",
         lat=45.4879, lng=-75.8944,
         description="A sweeping view over the Ottawa River and Outaouais region. One of the quieter viewpoints.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=False, difficulty="easy", lengthKm=1.5),
+        conservation_sensitivity="low"
     ),
     POI(
         id="camp-fortune",
@@ -97,7 +122,9 @@ POIS = [
         poi_type="trail",
         lat=45.5009, lng=-75.8489,
         description="A four-season outdoor recreation area. In winter a ski hill, in summer a hub for mountain biking.",
-        source="Chelsea, QC"
+        source="Chelsea, QC",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=True, difficulty="moderate", lengthKm=4),
+        conservation_sensitivity="low"
     ),
     POI(
         id="chelsea-pub",
@@ -105,7 +132,8 @@ POIS = [
         poi_type="food",
         lat=45.5172, lng=-75.7884,
         description="A beloved village institution. Solid pub food, local craft beers, and a lively patio.",
-        source="Old Chelsea, QC"
+        source="Old Chelsea, QC",
+        conservation_sensitivity="low"
     ),
     POI(
         id="la-cigale",
@@ -113,7 +141,8 @@ POIS = [
         poi_type="food",
         lat=45.5175, lng=-75.7875,
         description="Chelsea's neighbourhood restaurant with seasonal menus and strong local ingredients.",
-        source="Old Chelsea, QC"
+        source="Old Chelsea, QC",
+        conservation_sensitivity="low"
     ),
     POI(
         id="wakefield-village",
@@ -121,7 +150,8 @@ POIS = [
         poi_type="cultural",
         lat=45.6351, lng=-75.8335,
         description="A small arts village straddling the Gatineau River, known for its covered bridge and Black Sheep Inn.",
-        source="Wakefield, QC"
+        source="Wakefield, QC",
+        conservation_sensitivity="low"
     ),
     POI(
         id="black-sheep-inn",
@@ -129,7 +159,8 @@ POIS = [
         poi_type="cultural",
         lat=45.6353, lng=-75.8329,
         description="A legendary live-music venue that has hosted Canadian and international artists for over 30 years.",
-        source="Wakefield, QC"
+        source="Wakefield, QC",
+        conservation_sensitivity="low"
     ),
     POI(
         id="lac-la-peche",
@@ -139,7 +170,9 @@ POIS = [
         description="A remote wilderness lake in the western backcountry. Canoe camping is permitted here.",
         conservation="Carry-in, carry-out rules apply. No motorized watercraft.",
         season="Access May–October only.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=False, eBikeFriendly=False, difficulty="hard", lengthKm=8),
+        conservation_sensitivity="high"
     ),
     POI(
         id="herridge-shelter",
@@ -147,7 +180,9 @@ POIS = [
         poi_type="trail",
         lat=45.5181, lng=-75.8943,
         description="A backcountry lean-to accessible via multiple trail routes. A useful navigation landmark.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=False, eBikeFriendly=False, difficulty="moderate", lengthKm=5),
+        conservation_sensitivity="medium"
     ),
     POI(
         id="gatineau-visitor-centre",
@@ -155,7 +190,9 @@ POIS = [
         poi_type="scenic",
         lat=45.4625, lng=-75.7810,
         description="The main entry point for park information, trail maps, and seasonal programming.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=True, difficulty="easy", lengthKm=0.5),
+        conservation_sensitivity="low"
     ),
     POI(
         id="sugarbush-trail",
@@ -164,7 +201,9 @@ POIS = [
         lat=45.4897, lng=-75.8601,
         description="A 6 km interpretive trail through old maple groves used for syrup production.",
         season="Sugarbush season: late February–April.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=False, difficulty="easy", lengthKm=6),
+        conservation_sensitivity="low"
     ),
     POI(
         id="philippe-lake",
@@ -173,7 +212,9 @@ POIS = [
         lat=45.5456, lng=-75.9301,
         description="A well-maintained NCC campground on a large lake in the western park with canoe rentals.",
         season="Camping season: May–October.",
-        source="NCC Gatineau Park"
+        source="NCC Gatineau Park",
+        trail_capabilities=TrailCapabilities(dogFriendly=True, eBikeFriendly=True, difficulty="easy", lengthKm=2),
+        conservation_sensitivity="medium"
     ),
     POI(
         id="old-chelsea-cemetery",
@@ -181,7 +222,8 @@ POIS = [
         poi_type="historical",
         lat=45.5174, lng=-75.7878,
         description="A historic rural cemetery with graves dating to the early 1800s.",
-        source="Chelsea, QC Heritage Registry"
+        source="Chelsea, QC Heritage Registry",
+        conservation_sensitivity="low"
     ),
 ]
 

@@ -345,6 +345,64 @@ html, body, #root { height: 100%; }
   text-align: center;
 }
 
+.route-panel__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.route-panel__checkbox input[type='checkbox'] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.route-panel__checkbox label {
+  cursor: pointer;
+  font-size: 13px;
+  color: #455a64;
+  margin-bottom: 0;
+}
+
+.route-panel__section select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  font-size: 12px;
+  background: white;
+}
+
+.route-panel__section select:focus {
+  outline: none;
+  border-color: #4fc3f7;
+  box-shadow: 0 0 0 2px rgba(79, 195, 247, 0.1);
+}
+
+.route-panel__conservation {
+  background: #f1f8e9;
+  border-left: 3px solid #66bb6a;
+  padding: 12px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 16px;
+}
+
+.route-panel__conservation h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #33691e;
+  margin-bottom: 6px;
+}
+
+.route-panel__conservation p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #33691e;
+  margin: 0;
+}
+
 .route-panel--result {
   justify-content: flex-start;
 }

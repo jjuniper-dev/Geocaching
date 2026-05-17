@@ -11,6 +11,7 @@ const pois: POI[] = [
     conservation:
       'Fencing protects the shoreline. Stay on the boardwalk — bank erosion threatens the stratification.',
     source: 'Parks Canada / NCC',
+    conservationSensitivity: 'high',
   },
   {
     id: 'champlain-lookout',
@@ -20,6 +21,13 @@ const pois: POI[] = [
     description:
       'The most panoramic viewpoint in Gatineau Park. On clear days you can see the Ottawa River valley and the Laurentian highlands. Part of the Canadian Shield edge, this escarpment was formed over a billion years ago.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: false,
+      difficulty: 'easy',
+      lengthKm: 2.5,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'lusk-cave',
@@ -32,6 +40,13 @@ const pois: POI[] = [
       'Do not disturb hibernating bats (November–April). White-nose syndrome threatens local bat populations.',
     season: 'Best: May–October. Trail closed during winter.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: false,
+      eBikeFriendly: false,
+      difficulty: 'moderate',
+      lengthKm: 11,
+    },
+    conservationSensitivity: 'high',
   },
   {
     id: 'mackenzie-king-estate',
@@ -42,6 +57,7 @@ const pois: POI[] = [
       "Canada's longest-serving Prime Minister used this retreat from 1903 until his death in 1950. The estate features ruins he collected from Britain, formal gardens, and three restored cottages with original furnishings.",
     season: 'Open May–October. Tea room on site.',
     source: 'NCC / Parks Canada',
+    conservationSensitivity: 'low',
   },
   {
     id: 'carbide-willson-ruins',
@@ -53,6 +69,7 @@ const pois: POI[] = [
     conservation:
       'Ruins are structurally fragile. Do not climb on the walls.',
     source: 'NCC Gatineau Park',
+    conservationSensitivity: 'medium',
   },
   {
     id: 'meech-lake',
@@ -63,6 +80,13 @@ const pois: POI[] = [
       'A pristine lake inside Gatineau Park with a public beach, canoe rentals, and calm water ideal for swimming. Named after Methodist minister Reverend Asa Meech who settled here in 1823.',
     season: 'Swimming season: June–August.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: true,
+      difficulty: 'easy',
+      lengthKm: 3,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'skyline-trail',
@@ -72,6 +96,13 @@ const pois: POI[] = [
     description:
       'A moderately challenging ridge trail offering continuous views westward across the Gatineau Hills. The rocky Canadian Shield terrain is typical of the Precambrian highlands that define this region.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: false,
+      eBikeFriendly: false,
+      difficulty: 'moderate',
+      lengthKm: 7.5,
+    },
+    conservationSensitivity: 'medium',
   },
   {
     id: 'king-mountain',
@@ -81,6 +112,13 @@ const pois: POI[] = [
     description:
       'A rocky summit accessible via a short but steep trail, offering close-up views of the Ottawa Valley farmland below. The summit granite is some of the oldest exposed rock in the region — over 1 billion years old.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: false,
+      difficulty: 'moderate',
+      lengthKm: 2,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'etienne-brule-lookout',
@@ -90,6 +128,13 @@ const pois: POI[] = [
     description:
       "Named for Champlain's interpreter who explored this region in the early 1600s. The lookout gives a sweeping view over the Ottawa River and Outaouais region. One of the quieter viewpoints in the park.",
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: false,
+      difficulty: 'easy',
+      lengthKm: 1.5,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'camp-fortune',
@@ -99,6 +144,13 @@ const pois: POI[] = [
     description:
       'A four-season outdoor recreation area. In winter, it operates as a ski hill. In summer and fall, it becomes a hub for mountain biking, zip-lining, and trail access into the central park network.',
     source: 'Chelsea, QC',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: true,
+      difficulty: 'moderate',
+      lengthKm: 4,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'chelsea-pub',
@@ -108,6 +160,7 @@ const pois: POI[] = [
     description:
       'A beloved village institution in Old Chelsea. Solid pub food, local craft beers, a log-cabin feel, and a lively patio. Hikers from Gatineau Park frequently end their day here. First opened in the 1980s.',
     source: 'Old Chelsea, QC',
+    conservationSensitivity: 'low',
   },
   {
     id: 'la-cigale',
@@ -117,6 +170,7 @@ const pois: POI[] = [
     description:
       'Chelsea\'s warmly regarded neighbourhood restaurant — seasonal menus, strong local ingredients, and a cozy room. A reliable choice for a proper meal before or after exploring the park.',
     source: 'Old Chelsea, QC',
+    conservationSensitivity: 'low',
   },
   {
     id: 'wakefield-village',
@@ -126,6 +180,7 @@ const pois: POI[] = [
     description:
       'A small arts village straddling the Gatineau River, 30 km north of Chelsea. Known for its covered bridge, the Black Sheep Inn music venue, artisan studios, and the historic steam train that once ran here.',
     source: 'Wakefield, QC',
+    conservationSensitivity: 'low',
   },
   {
     id: 'black-sheep-inn',
@@ -135,6 +190,7 @@ const pois: POI[] = [
     description:
       'A legendary small live-music venue that has hosted Canadian and international folk, jazz, and roots artists for over 30 years. The intimate room seats under 100 people. Reservations essential.',
     source: 'Wakefield, QC',
+    conservationSensitivity: 'low',
   },
   {
     id: 'lac-la-peche',
@@ -147,6 +203,13 @@ const pois: POI[] = [
       'Carry-in, carry-out rules apply. No motorized watercraft permitted.',
     season: 'Access May–October only.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: false,
+      eBikeFriendly: false,
+      difficulty: 'hard',
+      lengthKm: 8,
+    },
+    conservationSensitivity: 'high',
   },
   {
     id: 'herridge-shelter',
@@ -156,6 +219,13 @@ const pois: POI[] = [
     description:
       'A backcountry lean-to accessible via multiple trail routes. A useful navigation landmark and rest point in the central park network. The surrounding boreal-transitional forest is typical of the Gatineau highland interior.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: false,
+      eBikeFriendly: false,
+      difficulty: 'moderate',
+      lengthKm: 5,
+    },
+    conservationSensitivity: 'medium',
   },
   {
     id: 'gatineau-visitor-centre',
@@ -165,6 +235,13 @@ const pois: POI[] = [
     description:
       'The main entry point for park information, trail maps, and seasonal programming. Staff can advise on current trail conditions, wildlife activity, and conservation events. Good starting point for first-time visitors.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: true,
+      difficulty: 'easy',
+      lengthKm: 0.5,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'sugarbush-trail',
@@ -175,6 +252,13 @@ const pois: POI[] = [
       'A 6 km interpretive trail through old maple groves used for syrup production since Indigenous times. Interpretive signs explain the ecology of the sugar maple forest and the history of maple harvesting in the Outaouais.',
     season: 'Sugarbush season: late February–April.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: false,
+      difficulty: 'easy',
+      lengthKm: 6,
+    },
+    conservationSensitivity: 'low',
   },
   {
     id: 'philippe-lake',
@@ -185,6 +269,13 @@ const pois: POI[] = [
       'A well-maintained NCC campground on a large lake in the western park. Canoe and kayak rentals available. The lake is bordered by mixed boreal forest and offers quieter conditions than busier areas near Chelsea.',
     season: 'Camping season: May–October.',
     source: 'NCC Gatineau Park',
+    trailCapabilities: {
+      dogFriendly: true,
+      eBikeFriendly: true,
+      difficulty: 'easy',
+      lengthKm: 2,
+    },
+    conservationSensitivity: 'medium',
   },
   {
     id: 'old-chelsea-cemetery',
@@ -194,6 +285,7 @@ const pois: POI[] = [
     description:
       "A historic rural cemetery in the heart of Old Chelsea, with graves dating to the early 1800s. The headstones document the community's early settler families — Irish, Scottish, and English immigrants who cleared this land.",
     source: 'Chelsea, QC Heritage Registry',
+    conservationSensitivity: 'low',
   },
 ]
 
