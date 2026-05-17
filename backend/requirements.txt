@@ -11,3 +11,4 @@ python-multipart
 httpx
 ollama
 requests
+strawberry-graphql
