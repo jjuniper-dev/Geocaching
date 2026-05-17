@@ -43,7 +43,7 @@ export default function App() {
       <header className="header">
         <div className="header__brand">
           <span className="header__icon">⊕</span>
-          <span className="header__title">Snuggly Anchor</span>
+          <span className="header__title">Cartograph</span>
           <span className="header__sub">Chelsea · Gatineau Park</span>
         </div>
         <div className="header__controls">

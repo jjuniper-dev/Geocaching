@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import routing
 
-app = FastAPI(title="Snuggly Anchor API", version="0.1.0")
+app = FastAPI(title="Cartograph API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,

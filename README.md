@@ -1,4 +1,4 @@
-# Snuggly Anchor
+# Cartograph
 **AI-assisted spatial exploration platform for Chelsea QC and Gatineau Park**
 
 An interactive web app combining Leaflet mapping, route generation, and local LLM recommendations to explore outdoor locations with contextual environmental and cultural intelligence.
