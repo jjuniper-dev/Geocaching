@@ -7,6 +7,21 @@ export interface RouteFilters {
   avoidSensitiveAreas: boolean
 }
 
+export interface POIHighlight {
+  poi_id: string
+  name: string
+  context: string
+  ecology?: string
+  conservation?: string
+}
+
+export interface RouteEnrichment {
+  narrative: string
+  highlights: POIHighlight[]
+  environmental_education: string[]
+  stewardship_tips: string[]
+}
+
 interface RoutePanelProps {
   onGenerate: (
     start: [number, number],
@@ -16,6 +31,7 @@ interface RoutePanelProps {
   loading: boolean
   narrative: string | null
   conservationImpact?: string | null
+  enrichment?: RouteEnrichment | null
   onClose: () => void
 }
 
@@ -24,6 +40,7 @@ export default function RoutePanel({
   loading,
   narrative,
   conservationImpact,
+  enrichment,
   onClose,
 }: RoutePanelProps) {
   const [startLat, setStartLat] = useState('45.497')
@@ -51,14 +68,64 @@ export default function RoutePanel({
         </button>
         {conservationImpact && (
           <div className="route-panel__conservation">
-            <h4>Conservation Impact</h4>
+            <h4>🌿 Conservation Impact</h4>
             <p>{conservationImpact}</p>
           </div>
         )}
         <div className="route-panel__narrative">
-          <h3>Route Narrative</h3>
+          <h3>📍 Route Overview</h3>
           <p>{narrative}</p>
         </div>
+
+        {enrichment && (
+          <div className="route-panel__enrichment">
+            {enrichment.highlights && enrichment.highlights.length > 0 && (
+              <div className="route-panel__section">
+                <h4>⭐ Highlights Along the Way</h4>
+                {enrichment.highlights.map((highlight) => (
+                  <div key={highlight.poi_id} className="route-panel__highlight">
+                    <h5>{highlight.name}</h5>
+                    <p className="route-panel__highlight-context">{highlight.context}</p>
+                    {highlight.ecology && (
+                      <p className="route-panel__highlight-ecology">
+                        <strong>Ecology:</strong> {highlight.ecology}
+                      </p>
+                    )}
+                    {highlight.conservation && (
+                      <p className="route-panel__highlight-conservation">
+                        <strong>Conservation:</strong> {highlight.conservation}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {enrichment.environmental_education &&
+              enrichment.environmental_education.length > 0 && (
+                <div className="route-panel__section">
+                  <h4>🔬 Environmental Context</h4>
+                  <ul className="route-panel__education-list">
+                    {enrichment.environmental_education.map((edu, idx) => (
+                      <li key={idx}>{edu}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+            {enrichment.stewardship_tips &&
+              enrichment.stewardship_tips.length > 0 && (
+                <div className="route-panel__section">
+                  <h4>♻️ Stewardship Tips</h4>
+                  <ul className="route-panel__stewardship-list">
+                    {enrichment.stewardship_tips.map((tip, idx) => (
+                      <li key={idx}>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+          </div>
+        )}
       </div>
     )
   }

@@ -504,3 +504,91 @@ html, body, #root { height: 100%; }
 .legend-dot.unvisited {
   background: #bdbdbd;
 }
+
+/* Enrichment styles */
+.route-panel__enrichment {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 8px;
+}
+
+.route-panel__enrichment h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+  margin-top: 16px;
+}
+
+.route-panel__enrichment h4:first-child {
+  margin-top: 0;
+}
+
+.route-panel__highlight {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border-left: 3px solid #ff9800;
+}
+
+.route-panel__highlight h5 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #455a64;
+  margin-bottom: 6px;
+}
+
+.route-panel__highlight-context {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #546e7a;
+  margin: 0 0 6px 0;
+}
+
+.route-panel__highlight-ecology {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #66bb6a;
+  margin: 4px 0;
+}
+
+.route-panel__highlight-conservation {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #d32f2f;
+  margin: 4px 0;
+}
+
+.route-panel__education-list,
+.route-panel__stewardship-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.route-panel__education-list li,
+.route-panel__stewardship-list li {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #546e7a;
+  margin-bottom: 8px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.route-panel__education-list li::before {
+  content: '•';
+  position: absolute;
+  left: 4px;
+  color: #66bb6a;
+  font-weight: bold;
+}
+
+.route-panel__stewardship-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 2px;
+  color: #2196f3;
+  font-weight: bold;
+}

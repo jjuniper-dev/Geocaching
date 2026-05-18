@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import Map from './components/Map'
 import POIPanel from './components/POIPanel'
-import RoutePanel, { type RouteFilters } from './components/RoutePanel'
+import RoutePanel, { type RouteFilters, type RouteEnrichment } from './components/RoutePanel'
 import GraphView from './components/GraphView'
 import type { POI } from './types/geospatial'
 import pois from './data/pois'
+import { apiClient } from './api/client'
 import './App.css'
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
@@ -15,6 +16,7 @@ export default function App() {
   const [route, setRoute] = useState<[number, number][] | null>(null)
   const [narrative, setNarrative] = useState<string | null>(null)
   const [conservationImpact, setConservationImpact] = useState<string | null>(null)
+  const [enrichment, setEnrichment] = useState<RouteEnrichment | null>(null)
   const [loading, setLoading] = useState(false)
   const [visitedPois, setVisitedPois] = useState<Set<string>>(new Set())
 
@@ -56,6 +58,19 @@ export default function App() {
       setRoute(data.coordinates)
       setNarrative(data.narrative)
       setConservationImpact(data.conservationImpact || null)
+
+      // Fetch AI enrichment
+      try {
+        const enrichmentData = await apiClient.enrichRoute({
+          route: data.route || { coordinates: data.coordinates, properties: { distance_km: data.distance_km } },
+          nearby_poi_ids: data.nearby_poi_ids || [],
+          conservation_impact: data.conservationImpact ? { impact_score: data.conservationImpact } : undefined,
+        })
+        setEnrichment(enrichmentData)
+      } catch (enrichErr) {
+        console.warn('Enrichment failed (AI service may not be available):', enrichErr)
+        // Continue without enrichment
+      }
     } catch (err) {
       console.error('Route generation failed:', err)
       alert('Failed to generate route. Make sure the backend is running.')
@@ -79,6 +94,7 @@ export default function App() {
               setMode('explore')
               setRoute(null)
               setNarrative(null)
+              setEnrichment(null)
             }}
           >
             Explore
@@ -111,11 +127,13 @@ export default function App() {
                 loading={loading}
                 narrative={narrative}
                 conservationImpact={conservationImpact}
+                enrichment={enrichment}
                 onClose={() => {
                   setMode('explore')
                   setRoute(null)
                   setNarrative(null)
                   setConservationImpact(null)
+                  setEnrichment(null)
                 }}
               />
             )}
