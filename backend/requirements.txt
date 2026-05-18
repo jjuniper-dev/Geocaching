@@ -5,9 +5,11 @@ psycopg2-binary
 geoalchemy2
 pydantic
 pydantic-settings
+pydantic[email]
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
 httpx
 ollama
 requests
+strawberry-graphql

@@ -1,0 +1,54 @@
+Trail_ID,Trail_Name,Closest_Parking_Lot,Sector,Typical_Use,Notes
+1,Trail 1,P3,Champlain Parkway,Hiking / Multi-use,Western scenic corridor
+6,Trail 6,P3,Champlain Parkway,Hiking / Multi-use,Connects to Lauriault area
+8,Trail 8,P5,King Mountain,Hiking,Access to escarpment views
+15,Trail 15,P5,King Mountain,Hiking,Short connector trail
+23,Trail 23,P1 Asticou,Asticou,Hiking / Multi-use,Southern access corridor
+25,Pink Lake Trail,P2,Pink Lake,Hiking,Popular interpretive loop
+26,Trail 26,P2,Pink Lake,Hiking,Forest connector
+27,Trail 27,P2,Pink Lake,Hiking / Multi-use,Links Pink and Fortune sectors
+30,Trail 30,P8,Western Sector,Hiking,Interior forest access
+31,Trail 31,P8,Western Sector,Hiking / Multi-use,Ridge connector
+32,Trail 32,P8,Western Sector,Hiking,Moderate terrain
+33,Trail 33,P9 Dunlop,Carbide Willson,Hiking,Access to ruins
+34,Trail 34,P9 Dunlop,Carbide Willson,Hiking / Multi-use,Interior woodland route
+35,Trail 35,P2,Pink Lake,Hiking,Short connector
+36,Trail 36,P9 Dunlop,Carbide Willson,Hiking,Scenic wooded trail
+37,Trail 37,P10 Fortune,Camp Fortune,Hiking / Multi-use,Steeper elevation gain
+38,Trail 38,P10 Fortune,Camp Fortune,Hiking,Links to Skyline area
+39,Trail 39,P10 Fortune,Camp Fortune,Hiking / Multi-use,Technical terrain sections
+40,Trail 40,P7,Meech Lake,Hiking,Lake access trail
+41,Trail 41,P7,Meech Lake,Hiking / Multi-use,Forest loop
+50,Trail 50,Philippe Lake Parking,Philippe Lake,Hiking / Multi-use,Northern sector trail
+51,Trail 51,Philippe Lake Parking,Philippe Lake,Hiking,Backcountry connector
+53,Trail 53,Philippe Lake Parking,Philippe Lake,Hiking,Woodland route
+54,Trail 54,Philippe Lake Parking,Philippe Lake,Hiking / Multi-use,Lake perimeter access
+55,Trail 55,Philippe Lake Parking,Philippe Lake,Hiking,Moderate terrain
+56,Trail 56,Meech Lake Parking,Meech Lake,Hiking / Multi-use,South Meech corridor
+57,Trail 57,Meech Lake Parking,Meech Lake,Hiking,Interior forest access
+58,Trail 58,Meech Lake Parking,Meech Lake,Hiking / Multi-use,Connector trail
+59,Trail 59,Meech Lake Parking,Meech Lake,Hiking,Lakeside terrain
+60,Trail 60,Meech Lake Parking,Meech Lake,Hiking / Multi-use,Moderate loop options
+62,Trail 62,P10 Fortune,Camp Fortune,Hiking,Climbing terrain
+63,Trail 63,P10 Fortune,Camp Fortune,Hiking / Multi-use,Fortune connector
+64,Trail 64,P10 Fortune,Camp Fortune,Hiking,Ridge access
+65,Trail 65,P10 Fortune,Camp Fortune,Hiking / Multi-use,Longer elevation route
+66,Trail 66,P2,Pink Lake,Hiking,Connector to southern loops
+67,Trail 67,P2,Pink Lake,Hiking / Multi-use,Moderate terrain
+68,Trail 68,P2,Pink Lake,Hiking,Interior forest trail
+70,Trail 70,Wakefield Access,La Pêche,Hiking / Multi-use,Northern remote access
+71,Trail 71,Wakefield Access,La Pêche,Hiking,Remote woodland terrain
+72,Trail 72,Wakefield Access,La Pêche,Hiking / Multi-use,Connector network
+73,Trail 73,Wakefield Access,La Pêche,Hiking,Moderate terrain
+74,Trail 74,Wakefield Access,La Pêche,Hiking / Multi-use,Remote access route
+75,Trail 75,Wakefield Access,La Pêche,Hiking,Forest corridor
+76,Trail 76,Wakefield Access,La Pêche,Hiking / Multi-use,Northern connector
+77,Trail 77,P2,Pink Lake,Hiking,Short connector route
+KM,King Mountain Trail,P5,King Mountain,Hiking,Major scenic lookout trail
+PL,Pink Lake Trail,P2,Pink Lake,Hiking,Popular interpretive loop
+SB,Sugarbush Trail,Sugarbush Parking,Old Chelsea,Hiking / Family,Accessible educational trail
+LT,Lauriault Trail,P3,Champlain Parkway,Hiking / Family,Waterfall and picnic access
+SK,Skyline Trail,P10 Fortune,Camp Fortune,Hiking,Lookout-heavy route
+LF,Luskville Falls Trail,Luskville Falls Parking,Luskville,Hiking,Steep waterfall ascent
+WT,Wolf Trail,Blanchet / Meech Parking,Meech Lake,Hiking,Popular loop with escarpment views
+CW,Carbide Willson Ruins,P9 Dunlop,Carbide Willson,Hiking,Historic industrial ruins

@@ -1,7 +1,7 @@
 import strawberry
-from typing import List
+from typing import List, Optional
 from app.data import POIS
-from app.graph_schema import POI, Relationship, Coordinates, calculate_relationships
+from app.graph_schema import POI, Relationship, Coordinates, TrailCapabilities, calculate_relationships
 
 @strawberry.type
 class Query:
@@ -18,12 +18,19 @@ class Query:
                 conservation=poi.conservation,
                 season=poi.season,
                 source=poi.source,
+                trailCapabilities=TrailCapabilities(
+                    dogFriendly=poi.trail_capabilities.dogFriendly,
+                    eBikeFriendly=poi.trail_capabilities.eBikeFriendly,
+                    difficulty=poi.trail_capabilities.difficulty,
+                    lengthKm=poi.trail_capabilities.lengthKm,
+                ) if poi.trail_capabilities else None,
+                conservationSensitivity=poi.conservation_sensitivity,
             )
             for poi in POIS
         ]
 
     @strawberry.field
-    def poi(self, id: str) -> POI | None:
+    def poi(self, id: str) -> Optional[POI]:
         """Get a single POI by ID."""
         poi = next((p for p in POIS if p.id == id), None)
         if not poi:
@@ -37,6 +44,13 @@ class Query:
             conservation=poi.conservation,
             season=poi.season,
             source=poi.source,
+            trailCapabilities=TrailCapabilities(
+                dogFriendly=poi.trail_capabilities.dogFriendly,
+                eBikeFriendly=poi.trail_capabilities.eBikeFriendly,
+                difficulty=poi.trail_capabilities.difficulty,
+                lengthKm=poi.trail_capabilities.lengthKm,
+            ) if poi.trail_capabilities else None,
+            conservationSensitivity=poi.conservation_sensitivity,
         )
 
     @strawberry.field

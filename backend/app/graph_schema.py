@@ -1,11 +1,18 @@
 import strawberry
-from typing import List
+from typing import List, Optional
 import math
 
 @strawberry.type
 class Coordinates:
     lat: float
     lng: float
+
+@strawberry.type
+class TrailCapabilities:
+    dogFriendly: bool
+    eBikeFriendly: bool
+    difficulty: str
+    lengthKm: Optional[float] = None
 
 @strawberry.type
 class POI:
@@ -17,6 +24,8 @@ class POI:
     conservation: str = ""
     season: str = ""
     source: str = ""
+    trailCapabilities: Optional[TrailCapabilities] = None
+    conservationSensitivity: Optional[str] = None
 
 @strawberry.type
 class Relationship:

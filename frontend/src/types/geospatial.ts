@@ -1,4 +1,14 @@
 export type POIType = 'scenic' | 'historical' | 'food' | 'trail' | 'wildlife' | 'cultural'
+export type Difficulty = 'easy' | 'moderate' | 'hard'
+export type ConservationSensitivity = 'low' | 'medium' | 'high'
+
+export interface TrailCapabilities {
+  dogFriendly: boolean
+  eBikeFriendly: boolean
+  difficulty: Difficulty
+  lengthKm?: number
+  wheelchairAccessible?: boolean
+}
 
 export interface POI {
   id: string
@@ -9,6 +19,8 @@ export interface POI {
   conservation?: string
   season?: string
   source?: string
+  trailCapabilities?: TrailCapabilities
+  conservationSensitivity?: ConservationSensitivity
 }
 
 export const POI_TYPE_LABELS: Record<POIType, string> = {
