@@ -3,14 +3,17 @@ import Map from './components/Map'
 import POIPanel from './components/POIPanel'
 import RoutePanel, { type RouteFilters, type RouteEnrichment } from './components/RoutePanel'
 import GraphView from './components/GraphView'
+import Login from './pages/Login'
 import type { POI } from './types/geospatial'
 import pois from './data/pois'
 import { apiClient } from './api/client'
+import { useAuth } from './hooks/useAuth'
 import './App.css'
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function App() {
+  const auth = useAuth()
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
   const [mode, setMode] = useState<'explore' | 'route' | 'graph'>('explore')
   const [route, setRoute] = useState<[number, number][] | null>(null)
@@ -79,6 +82,26 @@ export default function App() {
     }
   }
 
+  if (auth.isLoading) {
+    return (
+      <div className="app">
+        <header className="header">
+          <div className="header__brand">
+            <span className="header__icon">⊕</span>
+            <span className="header__title">Cartograph</span>
+          </div>
+        </header>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <p style={{ color: '#90a4ae' }}>Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!auth.isAuthenticated) {
+    return <Login auth={auth} onLoginSuccess={() => {}} />
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -112,6 +135,12 @@ export default function App() {
             Graph
           </button>
           <span className="header__count">{pois.length} locations</span>
+          <div className="header__user">
+            <span className="header__email">{auth.user?.email}</span>
+            <button className="header__logout" onClick={() => auth.logout()}>
+              Sign out
+            </button>
+          </div>
         </div>
       </header>
       {mode === 'graph' ? (
